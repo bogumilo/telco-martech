@@ -1,0 +1,11 @@
+
+version: 2
+
+sources:
+    - name: customer
+      description: "A starter dbt model"
+      database: protean-garage-368913
+      schema: telco_martech_data
+      table:
+          - name: customer
+            description: "Input data with labels"
