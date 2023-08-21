@@ -7,5 +7,4 @@ sources:
       database: protean-garage-368913
       schema: telco_martech_data
       table:
-          - name: customer_raw
-            description: "Input data with labels"
+          - name: input
