@@ -33,8 +33,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  telco_martech_data:
-    reporting:
-      +materialized: table
-    staging:
-      +materialized: view
+  reporting:
+    +materialized: table
+  staging:
+    +materialized: view
