@@ -1,0 +1,26 @@
+
+version: 2
+
+sources:
+  - name: raw
+    database: protean-garage-368913
+    tables:
+      - name: input
+        description: Raw 'input' table from Bigquery.
+
+models:
+  - name: stg_customer_details
+    description: "Staging model representing the schema on the original input.csv file"
+    columns:
+      - name: msisdn
+        tests:
+          - unique 
+          - not_null
+      - name: subscr_id
+        tests:
+          - unique 
+          - not_null
+      - name: email_address                     
+        tests:
+          - unique 
+          - not_null
