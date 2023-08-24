@@ -1,31 +1,22 @@
-with transformed as (
-    select * from {{ ref("dim_customer_details") }}
-),
+with
+    transformed as (select * from {{ ref("dim_customer_details") }}),
 
-counter as (
+    counter as (
 
-    select
-        j_month,
-    
-        COUNT(*) as subscribers_cnt
-    
-    from transformed
+        select j_month, count(*) as subscribers_cnt from transformed group by 1
+    ),
 
-    group by 1
-),
+    min_max as (
 
-min_max as (
+        select
+            j_month,
 
-    select
-        j_month,
+            min(subscribers_cnt) over () as min_subs,
+            max(subscribers_cnt) over () as max_subs
 
-        min(subscribers_cnt) over () as min_subs,
-        max(subscribers_cnt) over () as max_subs
+        from counter
 
-    from counter
-
-    -- group by 1
-)
+    )
 select
     c.*,
     case when c.subscribers_cnt = m.min_subs then 'Y' else 'N' end as the_worst_month,
