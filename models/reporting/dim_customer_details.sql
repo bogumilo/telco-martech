@@ -4,13 +4,13 @@ select
     msisdn,
     email_address,
     case
-        when SAFE_CAST(age as INT64) < 18
+        when safe_cast(age as int64) < 18
         then '<18'
-        when SAFE_CAST(age as INT64) between 18 and 25
+        when safe_cast(age as int64) between 18 and 25
         then '18-25'
-        when SAFE_CAST(age as INT64) between 26 and 35
+        when safe_cast(age as int64) between 26 and 35
         then '26-35'
-        when SAFE_CAST(age as INT64) between 36 and 45
+        when safe_cast(age as int64) between 36 and 45
         then '36-45'
         else '>45'
     end as age_band,
@@ -36,9 +36,13 @@ select
     avg_3_mths_roam_calls_usage,
     avg_3_mths_roam_sms_usage,
     avg_3_mths_roam_data_usage,
-    if(avg_3_mths_roam_calls_usage > 0
-        OR avg_3_mths_roam_sms_usage > 0
-        OR avg_3_mths_roam_data_usage > 0, 'Y', 'N') as avg_available,
+    if(
+        avg_3_mths_roam_calls_usage > 0
+        or avg_3_mths_roam_sms_usage > 0
+        or avg_3_mths_roam_data_usage > 0,
+        'Y',
+        'N'
+    ) as avg_available,
     data_bolton_ind,
     insurance_bolton_ind,
     o2travel_optin_ind,
