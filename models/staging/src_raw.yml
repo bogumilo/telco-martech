@@ -7,6 +7,8 @@ sources:
     tables:
       - name: input
         description: Raw 'input' table from Bigquery.
+      - name: input_test
+        description: Raw 'input_test' table from Bigquery which is extended version of original file.
 
 models:
   - name: stg_customer_details
